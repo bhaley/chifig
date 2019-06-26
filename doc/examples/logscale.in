@@ -1,0 +1,41 @@
+#
+# Logscale example with curve plotted against yaxis2
+#
+plot {
+   title 'Defect fractions'
+   key hide
+
+   xaxis {
+      title 'Time (s)'
+      min 1e-12
+      max 1e-2
+      ticks {number 6}
+      logscale
+   }
+
+   yaxis {
+      title 'Vacancy fraction', blue
+      min 0
+      max 1
+      ticks {number 6}
+   }
+
+   yaxis2 {
+      title 'As fraction', green
+      min 0
+      max 0.6
+      ticks {number 4}
+   }
+
+   curve {
+      read 'logscale.dat'
+      line dotted, blue
+      symbol circle, blue
+   }
+   curve {
+      read 'logscale.dat', ycol=3
+      line dashed, green
+      symbol square, green
+      yaxis2
+   }
+}

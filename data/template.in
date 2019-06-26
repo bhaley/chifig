@@ -1,0 +1,76 @@
+
+#
+# default { }
+#
+# layout 4
+# width 350
+# height 350
+# rgb colorname, 'r g b'
+# font_family sffamily|ttfamily
+# font_size n
+#
+# plot {
+#    key hide | x,y
+#    bgcolor colorname
+#    title 'text $math$', colorname
+#
+#    xgrid {
+#       show
+#       line solid|dotted|dashed|none, colorname [, width=r]
+#    }
+#    ygrid { }
+#
+#    xaxis {
+#       logscale
+#       title 'text $math$', colorname
+#       min r
+#       max r
+#       ticks {
+#          number 6
+#          min r
+#          max r
+#          scale r
+#          format 'str'
+#       }
+#    }
+#    yaxis { }
+#    xaxis2 { }
+#    yaxis2 { }
+#
+#    curve {
+#       generate 'f(x)', xmin, xmax, dx
+#       generate 'x(t)', 'y(t)', tmin, tmax, dt
+#       read 'path', xcol=n, ycol=n, xerrcol=n, yerrcol=n, delim=str, \
+#            every=n, xshift=f(x), yshift=f(x)
+#       line solid|dotted|dashed|none, colorname [, width=r]
+#       symbol circle|diamond|square|x|+|triangle|del|xerrbar|yerrbar|none, \
+#              colorname, scale=r, fill=true|false
+#       title 'text $math$', colorname
+#       xaxis2
+#       yaxis2
+#    }
+#
+#    label 'text $math$', x, y, color=colorname, angle=4
+#
+#    circle {
+#       position x, y
+#       radius r
+#       line solid|dotted|dashed|none, colorname [, width=r]
+#       bgcolor colorname
+#    }
+#
+#    arrow {
+#       from x, y
+#       to x, y
+#       line solid|dotted|dashed|none, colorname [, width=r]
+#       head hide | width, length, inset
+#    }
+#
+#    box {
+#       ll x, y
+#       ur x, y
+#       bgcolor colorname
+#    }
+# }
+#
+

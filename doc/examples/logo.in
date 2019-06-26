@@ -1,0 +1,65 @@
+#
+# Create the logo; a bit of everything in this example
+#
+rgb litegray, '0.95 0.95 0.95'
+rgb mygreen,  '0 0.35 0'
+
+font_family sffamily
+
+plot {
+   key hide
+   bgcolor litegray
+
+   xaxis {
+      title '{\large $t$}'
+      ticks {number 6}
+   }
+   yaxis {
+      title '{\large $e^{-t/\xi}$}'
+      min 0
+      ticks {number 6}
+   }
+
+   curve {
+      generate 'exp(-x)', 0, 5, 0.2
+      line solid, blue
+      symbol none
+   }
+   curve {
+      generate 'exp(-x/2.8)', 0, 5, 0.2
+      line none
+      symbol x, mygreen, scale=1.1
+   }
+
+   label '$\xi = 1$', 4.4, 0.07, color=blue
+   label '$\xi = 2.8$', 4.4, 0.3, color=mygreen
+   label '{\Huge \boldmath$\chi$fig}', 3.5, 0.8
+
+   circle {
+      position 2, 0.135
+      radius 4
+      line solid, blue
+   }
+   circle {
+      position 2, 0.49
+      radius 4
+      line solid, mygreen
+   }
+
+   arrow {
+      from 2, 0.16
+      to 2, 0.47
+      line dotted, black
+   }
+   arrow {
+      from 2, 0.47
+      to 2, 0.16
+      line dotted, black
+   }
+
+   box {
+      ll 2.7, 0.7
+      ur 4.3, 0.9
+      bgcolor white
+   }
+}

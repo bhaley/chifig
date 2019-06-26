@@ -1,0 +1,218 @@
+{
+   "default": {},
+
+   "layout": "1"|"2h"|"2v"|"4", 
+   "width": "",
+   "height": "",
+   "unit": "",
+   "show_bbox": true|false,
+   "zero": "",
+
+   "color": "",
+   "bgcolor": "",
+
+   "font_family": "",
+
+   "rgb": {},
+
+   "plots": [],
+   "<plot>": {
+      "inset": true|false,
+      "origin": "",
+      "width": "",
+      "height": "",
+      "padding": "",
+      "title": {
+         "text": "",
+         "color": ""
+      }, 
+      "bgcolor": "",
+      "key": {
+         "show": true|false,
+         "position": "",
+         "line_len": ""
+      }, 
+      "xgrid": {
+         "show": true|false,
+         "line": {
+            "style": "",
+            "color": "",
+            "width": "",
+            "dash_length": "",
+            "dash_gap": "",
+            "dot_gap": "" 
+         }
+      },
+      "ygrid": {
+         "show": true|false,
+         "line": {
+            "style": "",
+            "color": "",
+            "width": "",
+            "dash_length": "",
+            "dash_gap": "",
+            "dot_gap": "" 
+         }
+      }, 
+      "xaxis": {
+         "min": "",
+         "max": "",
+         "logscale": true|false,
+         "ticks": {
+            "min": "",
+            "max": "",
+            "number": "",
+            "format": "",
+            "scale": ""
+         }, 
+         "title": {
+            "text": "",
+            "color": ""
+         }
+      }, 
+      "yaxis": {
+         "min": "",
+         "max": "",
+         "logscale": true|false,
+         "ticks": {
+            "min": "",
+            "max": "",
+            "number": "",
+            "format": "",
+            "scale": ""
+         }, 
+         "title": {
+            "text": "",
+            "color": ""
+         }
+      }, 
+      "xaxis2": {
+         "min": "",
+         "max": "",
+         "logscale": true|false,
+         "ticks": {
+            "min": "",
+            "max": "",
+            "number": "",
+            "format": "",
+            "scale": ""
+         }, 
+         "title": {
+            "text": "",
+            "color": ""
+         }
+      }, 
+      "yaxis2": {
+         "min": "",
+         "max": "",
+         "logscale": true|false,
+         "ticks": {
+            "min": "",
+            "max": "",
+            "number": "",
+            "format": "",
+            "scale": ""
+         }, 
+         "title": {
+            "text": "",
+            "color": ""
+         }
+      }, 
+
+      "curves": [],
+      "<curve>": {
+         "data": {
+            "x": [],
+            "y": [],
+            "xerr": [],
+            "yerr": []
+         },
+         "line": {
+            "style": "",
+            "color": "",
+            "width": "", 
+            "dash_length": "",
+            "dash_gap": "",
+            "dot_gap": "" 
+         },
+         "symbol": {
+            "shape": "circle|diamond|x|+|del|triangle|square|xerrbar|yerrbar|none",
+            "fill": true|false,
+            "scale": "",
+            "color": ""
+         },
+         "title": {
+            "text": "",
+            "color": ""
+         },
+         "xaxis2": true|false,
+         "yaxis2": true|false
+      }, 
+
+      "labels": [],
+      "<label>": {
+         "title": {
+            "text": "",
+            "color": ""
+         },
+         "position": "",
+         "angle": ""
+      },
+
+      "arrows": [],
+      "<arrow>": {
+         "from": "",
+         "to": "",
+         "line": {
+            "style": "",
+            "color": "",
+            "width": "",
+            "dash_length": "",
+            "dash_gap": "",
+            "dot_gap": "" 
+         },
+         "head": {
+            "show": true|false,
+            "width": "",
+            "length": "",
+            "inset": ""
+         }
+      },
+
+      "boxes": [],
+      "<box>": {
+         "ll": "",
+         "ur": "",
+         "line": {
+            "style": "",
+            "color": "",
+            "width": "",
+            "dash_length": "",
+            "dash_gap": "",
+            "dot_gap": "" 
+         },
+         "bgcolor": "",
+         "shadow": {
+            "show": true|false,
+            "direction": "se|sw|ne|nw",
+            "color": "",
+            "width": ""
+         }
+      },
+
+      "circles": [],
+      "<circle>": {
+         "position": "",
+         "radius": "",
+         "line": {
+            "style": "",
+            "color": "",
+            "width": "",
+            "dash_length": "",
+            "dash_gap": "",
+            "dot_gap": "" 
+         },
+         "bgcolor": ""
+      }
+   }
+}

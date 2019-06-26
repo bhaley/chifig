@@ -1,0 +1,148 @@
+#!/usr/bin/env ruby
+# =============================================================================
+# chide -- Interactive CHIFIG DSL development environment using a text editor
+#          and Ghostscript
+# 
+# Copyright
+#
+# LICENSE
+# =============================================================================
+
+require 'chifig/exec'
+require 'chifig/config'
+
+# Defaults
+infile = 'figure.in'
+psfile = 'figure.ps'
+gs_width  = 245
+gs_height = 245
+sleep_time = 0.5
+
+# Display psfile with translated origin
+def gs_display(pin, pout, psfile)
+   # Restore original showpage, get bbox from gs
+   pin.write("/showpage {sp} def\n")
+   pin.write("(bbox) selectdevice\n")
+   pin.write("(#{psfile}) run\n")
+   outstr = ''
+   while true
+      begin
+         outstr << pout.readpartial(1024)
+      rescue SystemCallError
+         # ignore 
+      end
+      break if outstr.include?('%%BoundingBox')
+   end
+   # Restore empty showpage, original device
+   pin.write("/showpage {} def\n")
+   pin.write("devname selectdevice\n")
+   pin.write("erasepage\n")
+   # Translate origin
+   m = /%%BoundingBox:\s*([\d]+)\s*([\d]+)\s*([\d]+)\s*([\d]+)/.match(outstr)
+   pin.write("-#{m[1]} -#{m[2]} translate\n") if m
+   # Display
+   pin.write("(#{psfile}) run\n")
+end
+
+# Run chifig to update a figure, and display the updated figure using gs
+def update_figure(chifig, infile, psfile, gsin, gsout)
+   if CHIFIG.exec_wait("#{chifig} #{infile} #{psfile}")
+      gs_display(gsin, gsout, psfile)
+   else
+      $stderr.write("Generation of #{psfile} failed\n")
+   end
+end
+
+# Config
+template = File.join(CHIFIG::CONFIG['datadir'], 'template.in')
+logo = File.join(CHIFIG::CONFIG['datadir'], 'logo.ps')
+chifig = File.join(CHIFIG::CONFIG['bindir'], 'chifig')
+editor = CHIFIG::CONFIG['editor_path']
+gs = CHIFIG::CONFIG['gs_path']
+
+# Command line
+nargs = ARGV.length
+infile = ARGV[0] if nargs > 0
+psfile = ARGV[1] if nargs > 1
+gs_width  = ARGV[2].to_i if nargs > 2
+gs_height = ARGV[3].to_i if nargs > 3
+if nargs > 4
+   $stderr.write("Usage: #{$0} [infile] [psfile] [width] [height]\n")
+   exit 1
+end
+
+# Copy input template if infile does not exist
+if !File.exist?(infile)
+   begin
+      File.open(template, 'r') do |fin|
+         File.open(infile, 'w') {|fout| fout.write(fin.read)}
+      end
+   rescue SystemCallError => e
+      msg = "Error copying input template #{template} to #{infile}: "
+      msg << "#{e.message}\n"
+      $stderr.write(msg)
+      exit 1
+   end
+end
+
+# Launch editor with input file; we don't need to interact with the editor
+ed_rd, ed_pid = CHIFIG.exec_fork("#{editor} #{infile}")
+ed_done = false
+sleep(sleep_time)
+
+# Launch Ghostscript
+gs_cmd = "#{gs}"
+gs_cmd << " -dDEVICEWIDTHPOINTS=#{gs_width}"
+gs_cmd << " -dDEVICEHEIGHTPOINTS=#{gs_height}"
+gs_cmd << " -dNOPROMPT -q"
+gsin, gsout, gsth = CHIFIG.exec_drive(gs_cmd)
+
+# Save the original showpage, redefine it as an empty command, and save the 
+# original device name
+gsin.write("/sp {showpage} bind def\n")
+gsin.write("/showpage {} def\n")      
+# Deprecated in 9.? versions of gs
+#gsin.write("/devname currentdevice .devicename def\n")
+gsin.write("/devname currentpagedevice /Name get def\n")
+
+# Display logo
+gs_display(gsin, gsout, logo)
+
+# Display initial output if infile and psfile are specified
+if nargs >= 2
+   update_figure(chifig, infile, psfile, gsin, gsout)
+end
+
+# Interactive display update loop runs in a Thread while the main thread waits
+# for the user to close the editor.  
+Thread.abort_on_exception = true
+update_thr = Thread.new do
+   # When the input file is updated by the editor, generate updated Postscript 
+   # and display it.
+   t0 = File.exist?(infile) ? File.mtime(infile).to_i : 0
+   begin
+      begin
+         sleep(sleep_time)
+         t = File.mtime(infile).to_i
+         if t > t0
+            t0 = t
+            update_figure(chifig, infile, psfile, gsin, gsout)
+         end
+      rescue SystemCallError
+         # ignore mtime() failures: some editors (vim!) destroy and recreate
+         # infile while editing
+      rescue RuntimeError => e
+         $stderr.write("#{e.message}\n")
+      end
+   end until ed_done
+end
+
+# User closes the editor when finished
+Process.wait(ed_pid)
+ed_rd.close
+ed_done = true  # kill update_thr
+
+# Close Ghostscript
+gsin.write('quit')
+[gsin, gsout].each {|p| p.close}
+

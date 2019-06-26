@@ -1,0 +1,328 @@
+{
+   "layout": "1",
+   "width": "245",
+   "height": "245",
+   "unit": "1pt",
+   "show_bbox": false,
+   "zero": "1e-12",
+
+   "color": "black",
+   "bgcolor": "white",
+   "line": {
+      "style": "solid",
+      "color": "@default:color",
+      "width": "1",
+      "dash_length": "5",
+      "dash_gap": "2",
+      "dot_gap": "2"
+   }, 
+   "symbol_scale": "1",
+   "errorbar_width": "5",
+   "tick_length": "5",
+   "tick_number": "5",
+
+   "padding": "5",
+   "font_family": "rmfamily",
+   "font_size": "12",
+
+   "rgb": {
+      "red":    "0.5 0.0 0.0",
+      "green":  "0.0 0.5 0.0",
+      "blue":   "0.0 0.0 0.5",
+      "purple": "0.5 0.0 0.5",
+      "orange": "0.5 0.5 0.0",
+      "gray":   "0.5 0.5 0.5",
+      "black":  "0.0 0.0 0.0",
+      "white":  "1.0 1.0 1.0"
+   },
+
+   "plots": [],
+   "plot": {
+      "inset": false,
+      "origin": "",
+      "width": "",
+      "height": "",
+      "padding": "@default:padding",
+      "title": {
+         "text": "",
+         "color": "@default:color"
+      }, 
+      "bgcolor": "@default:bgcolor",
+      "key": {
+         "show": true,
+         "position": "",
+         "line_len": "10"
+      }, 
+      "xgrid": {
+         "show": false,
+         "line": {
+            "style": "@default:line:style",
+            "color": "@default:line:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         }
+      }, 
+      "ygrid": {
+         "show": false,
+         "line": {
+            "style": "@default:line:style",
+            "color": "@default:line:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         }
+      }, 
+      "xaxis": {
+         "min": "",
+         "max": "",
+         "logscale": false,
+         "ticks": {
+            "min": "",
+            "max": "",
+            "number": "@default:tick_number",
+            "format": "%g",
+            "scale": "1",
+            "length": "@default:tick_length"
+         }, 
+         "title": {
+            "text": "",
+            "color": "@default:color"
+         }
+      }, 
+      "yaxis": {
+         "min": "",
+         "max": "",
+         "logscale": false,
+         "ticks": {
+            "min": "",
+            "max": "",
+            "number": "@default:tick_number",
+            "format": "%g",
+            "scale": "1",
+            "length": "@default:tick_length"
+         }, 
+         "title": {
+            "text": "",
+            "color": "@default:color"
+         }
+      }, 
+      "xaxis2": {
+         "min": "",
+         "max": "",
+         "logscale": false,
+         "ticks": {
+            "min": "",
+            "max": "",
+            "number": "@default:tick_number",
+            "format": "%g",
+            "scale": "1",
+            "length": "@default:tick_length"
+         }, 
+         "title": {
+            "text": "",
+            "color": "@default:color"
+         }
+      }, 
+      "yaxis2": {
+         "min": "",
+         "max": "",
+         "logscale": false,
+         "ticks": {
+            "min": "",
+            "max": "",
+            "number": "@default:tick_number",
+            "format": "%g",
+            "scale": "1",
+            "length": "@default:tick_length"
+         }, 
+         "title": {
+            "text": "",
+            "color": "@default:color"
+         }
+      }, 
+
+      "curves": [],
+      "curve1": {
+         "color": "blue",
+         "line": {
+            "style": "solid",
+            "color": "@default:plot:curve1:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         },
+         "symbol": {
+            "shape": "x",
+            "fill": false,
+            "scale": "@default:symbol_scale",
+            "color": "@default:plot:curve1:color"
+         },
+         "title": {
+            "text": "",
+            "color": "@default:plot:curve1:color"
+         },
+         "xaxis2": false,
+         "yaxis2": false
+      }, 
+      "curve2": {
+         "color": "green",
+         "line": {
+            "style": "dotted",
+            "color": "@default:plot:curve2:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         },
+         "symbol": {
+            "shape": "triangle",
+            "fill": false,
+            "scale": "@default:symbol_scale",
+            "color": "@default:plot:curve2:color"
+         },
+         "title": {
+            "text": "",
+            "color": "@default:plot:curve2:color"
+         },
+         "xaxis2": false,
+         "yaxis2": false
+      }, 
+      "curve3": {
+         "color": "red",
+         "line": {
+            "style": "dashed",
+            "color": "@default:plot:curve3:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         },
+         "symbol": {
+            "shape": "circle",
+            "fill": false,
+            "scale": "@default:symbol_scale",
+            "color": "@default:plot:curve3:color"
+         },
+         "title": {
+            "text": "",
+            "color": "@default:plot:curve3:color"
+         },
+         "xaxis2": false,
+         "yaxis2": false
+      }, 
+      "curve4": {
+         "color": "purple",
+         "line": {
+            "style": "solid",
+            "color": "@default:plot:curve4:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         },
+         "symbol": {
+            "shape": "diamond",
+            "fill": false,
+            "scale": "@default:symbol_scale",
+            "color": "@default:plot:curve4:color"
+         },
+         "title": {
+            "text": "",
+            "color": "@default:plot:curve4:color"
+         },
+         "xaxis2": false,
+         "yaxis2": false
+      }, 
+      "curve5": {
+         "color": "orange",
+         "line": {
+            "style": "dotted",
+            "color": "@default:plot:curve5:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         },
+         "symbol": {
+            "shape": "del",
+            "fill": false,
+            "scale": "@default:symbol_scale",
+            "color": "@default:plot:curve5:color"
+         },
+         "title": {
+            "text": "",
+            "color": "@default:plot:curve5:color"
+         },
+         "xaxis2": false,
+         "yaxis2": false
+      }, 
+
+      "labels": [],
+      "label": {
+         "title": {
+            "text": "",
+            "color": "@default:color"
+         },
+         "position": "",
+         "angle": "0"
+      },
+
+      "arrows": [],
+      "arrow": {
+         "from": "",
+         "to": "",
+         "line": {
+            "style": "@default:line:style",
+            "color": "@default:line:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         },
+         "head": {
+            "show": true,
+            "width": "3",
+            "length": "2",
+            "inset": "0"
+         }
+      },
+
+      "boxes": [],
+      "box": {
+         "ll": "",
+         "ur": "",
+         "line": {
+            "style": "@default:line:style",
+            "color": "@default:line:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         },
+         "bgcolor": "@default:bgcolor",
+         "shadow": {
+            "show": true,
+            "direction": "se", 
+            "width": "5",
+            "color": "@default:color"
+         }
+      },
+
+      "circles": [],
+      "circle": {
+         "line": {
+            "style": "@default:line:style",
+            "color": "@default:line:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         },
+         "bgcolor": "@default:bgcolor"
+      }
+   }
+}

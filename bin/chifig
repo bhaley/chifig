@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+# =============================================================================
+# chifig -- Convert JSON/DSL description of a figure to Postscript
+#
+# Copyright
+#
+# LICENSE
+# =============================================================================
+
+require 'chifig'
+require 'chifig/dsl'
+
+usage = "Usage: #{$0} infile psfile"
+if ARGV.length != 2
+   $stderr.write("#{usage}\n")
+   exit 1
+end
+infile = ARGV[0]
+psfile = ARGV[1]
+
+default_json_path = CHIFIG::CONFIG['default_json_path']
+latex_path = CHIFIG::CONFIG['latex_path']
+dvips_path = CHIFIG::CONFIG['dvips_path']
+
+begin
+   psg = CHIFIG::PSGen.new(latex_path, dvips_path)
+   default_json = File.read(default_json_path)
+   input = File.read(infile)
+   if input[0] == '{'
+      json = input
+   else
+      parser = CHIFIG::DSL::Parser.new
+      status, output = parser.parse(input)
+      if status
+         json = output
+      else
+         $stderr.write(output)
+         exit 1
+      end
+   end
+   psg.convert(json, default_json, psfile)
+rescue SystemCallError, RuntimeError => e
+   $stderr.write("Error: #{e}\n")
+   exit 1
+end
+
