@@ -54,9 +54,10 @@ The installation process requires Rake (see below).
           symbol none
        }
     }
+
 See the equivalent JSON input of this example [here](doc/examples/sinc.json).
 
-For more examples, see the [gallery](doc/gallery_html/index.html).
+For more examples, see the [gallery](https://bhaley.github.io/chifig/doc/gallery_html/index.html).
 
 ## Installation
 All installation options are defined in the file install\_config.rb in the 
