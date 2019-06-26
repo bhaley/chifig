@@ -1,9 +1,10 @@
 # =============================================================================
 # dsl.rb -- tests for DSL examples
 #
-# Copyright
+# Copyright (c) 2019 Benjamin P. Haley
 #
-# LICENSE
+# See the LICENSE file for information on usage and redistribution of this
+# file and for a DISCLAIMER OF ALL WARRANTIES.
 # =============================================================================
 
 require_relative 'test'
