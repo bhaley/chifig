@@ -56,6 +56,8 @@ The installation process requires Rake (see below).
     }
 See the equivalent JSON input of this example [here](doc/examples/sinc.json).
 
+For more examples, see the [gallery](doc/gallery_html/index.html).
+
 ## Installation
 All installation options are defined in the file install\_config.rb in the 
 top source directory.  To see the current configuration, use this command:
