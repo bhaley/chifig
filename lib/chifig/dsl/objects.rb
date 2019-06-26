@@ -15,7 +15,7 @@ module CHIFIG
 module DSL
 
 #
-# Obejct -- base for all DSL objects
+# Object -- base for all DSL objects
 #
 # Instance variables
 # data::         Hash of parameters, sub-objects
