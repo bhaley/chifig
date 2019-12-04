@@ -35,7 +35,7 @@ begin
       if status
          json = output
       else
-         $stderr.write(output)
+         $stderr.write("#{output}\n")
          exit 1
       end
    end

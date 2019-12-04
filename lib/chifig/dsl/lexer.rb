@@ -98,7 +98,7 @@ class Lexer
          @i += 1
          t.done = _eos unless t.done
       end
-      _eos ? nil : t
+      (_eos && t.value.length == 0) ? nil : t
    end
 
    public
