@@ -1,7 +1,7 @@
 # =============================================================================
 # psgen.rb -- CHIFIG::PSGen class
 #
-# Copyright (c) 2019 Benjamin P. Haley
+# Copyright (c) 2019-2020 Benjamin P. Haley
 #
 # See the LICENSE file for information on usage and redistribution of this
 # file and for a DISCLAIMER OF ALL WARRANTIES.
@@ -287,6 +287,11 @@ class PSGen
       _add_text(text, x, y, ang, color)
    end
 
+   # Return the default curve for key, or the defcurve if key is not found
+   def _def_curve(key)
+      @data['default']['plot'][key] || @data['default']['plot']['defcurve']
+    end
+
    # Add commands to @latex_str to display the curve described by cobj
    def _add_curve(cobj, defcobj, xmin, xmax, ymin, ymax, xlow, xhigh, ylow, 
                   yhigh, show_key, key_line_len, padding, xlogscale, ylogscale)
@@ -444,7 +449,7 @@ class PSGen
          yd = dobj['y']
          raise RuntimeError, "Missing y data for curve #{ckey}" unless yd
          raise RuntimeError, "x size != y size for curve #{ckey}" unless xd.length == yd.length
-         defcobj = @data['default']['plot']["curve#{i+1}"]
+         defcobj = _def_curve("curve#{i+1}")
          j = _get_value('xaxis2', curve, defcobj) ? 2 : 0
          axes[j].update_range(xd)
          j = _get_value('yaxis2', curve, defcobj) ? 3 : 1
@@ -915,7 +920,7 @@ class PSGen
          cobj = pobj[ckey]
          raise RuntimeError, "Missing curve #{ckey}" unless cobj
          dckey = "curve#{i+1}"
-         defcobj = defpobj[dckey]
+         defcobj = _def_curve(dckey)  # defpobj = @data['default']['plot']
          raise RuntimeError, "Missing default curve #{dckey}" unless defcobj
          if _get_value('xaxis2', cobj, defcobj)
             x0 = xmin2

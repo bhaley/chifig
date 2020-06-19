@@ -260,6 +260,29 @@
          "xaxis2": false,
          "yaxis2": false
       }, 
+      "defcurve": {
+         "color": "@default:color",
+         "line": {
+            "style": "@default:line:style",
+            "color": "@default:color",
+            "width": "@default:line:width",
+            "dash_length": "@default:line:dash_length",
+            "dash_gap": "@default:line:dash_gap",
+            "dot_gap": "@default:line:dot_gap"
+         },
+         "symbol": {
+            "shape": "none",
+            "fill": false,
+            "scale": "@default:symbol_scale",
+            "color": "@default:color"
+         },
+         "title": {
+            "text": "",
+            "color": "@default:color"
+         },
+         "xaxis2": false,
+         "yaxis2": false
+      }, 
 
       "labels": [],
       "label": {
