@@ -6,7 +6,6 @@ default {
       arrow {head 6, 2, 0}
       box {
          bgcolor boxgray
-         shadow {show false}
       }
    }
 }

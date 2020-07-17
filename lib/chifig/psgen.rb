@@ -156,13 +156,11 @@ class PSGen
    # in [clow,chigh]
    def _trans(v, vmin, vmax, clow, chigh)
       if v < vmin
-         vret = clow
+         return clow
       elsif v > vmax
-         vret = chigh
-      else
-         vret = clow + (chigh-clow)*((v-vmin)/(vmax-vmin))
+         return chigh
       end
-      vret
+      clow + (chigh-clow)*((v-vmin)/(vmax-vmin))
    end
 
    # Add commands to @latex_str to display title text at (x,y) with reference 

@@ -159,6 +159,19 @@ class Box < CHIFIG::DSL::Object
    def initialize(index_subs=true)
       super(index_subs)
       @xy_opts << 'll' << 'ur'
+      @commands << 'shadow'
+      @data['shadow'] = {'show': false}
+   end
+
+   # Command: shadow se|sw|ne|nw [, colorname] [, width=r]
+   def shadow(args)
+      syn = 'Expecting "shadow se|sw|ne|nw [, colorname] [, width=r]"'
+      return false, syn if args.length < 1 || args.length > 3
+      s = @data['shadow']
+      s['show'] = true
+      s['direction'] = args[0]
+      s['color'] = args[1] if args.length > 2
+      args.last.each {|k,v| s[k] = v.to_s}
    end
 end
 
@@ -250,6 +263,7 @@ class Curve < CHIFIG::DSL::Object
          safe, s = ec.check(yshift)
          raise RuntimeError,"Unable to evaluate '#{yshift}': '#{s}'" unless safe
       end
+      # TODO use cached, already-read Dataset?  hash by (args[0],args[1])?
       @d.read(args[0], xcol, ycol, xerrcol, yerrcol, every, delim, xshift, yshift)
       return true, ''
    end

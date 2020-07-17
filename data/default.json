@@ -328,7 +328,7 @@
          },
          "bgcolor": "@default:bgcolor",
          "shadow": {
-            "show": true,
+            "show": false,
             "direction": "se", 
             "width": "5",
             "color": "@default:color"

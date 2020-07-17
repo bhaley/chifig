@@ -61,5 +61,6 @@ plot {
       ll 2.7, 0.7
       ur 4.3, 0.9
       bgcolor white
+      shadow se
    }
 }

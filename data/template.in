@@ -70,6 +70,7 @@
 #       ll x, y
 #       ur x, y
 #       bgcolor colorname
+#       shadow se|sw|ne|nw [, colorname] [, width=r]
 #    }
 # }
 #

@@ -30,6 +30,6 @@ end
          
 test_dir = File.join(topdir, 'doc', 'examples')
 tests = Dir.glob(File.join(test_dir, '*.in'))
-#tests = ['bessel.in']
+#tests = ['logo.in']
          
 run_tests(test_dir, tests, ps_lambda)
