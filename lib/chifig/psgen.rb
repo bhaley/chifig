@@ -89,7 +89,9 @@ class PSGen
 
    # Return common header used for all LaTeX inputs
    def _latex_header(obj=nil, defobj=@data['default'])
-      ptsize = _get_value('font_size', obj, defobj)
+      # Previously, checked obj for font_size, but usually this is specified
+      # only at the top level
+      ptsize = _get_value('font_size', @data, @data['default'])
       s  = "\\documentclass[class=scrreprt,#{ptsize}pt]{standalone}\n"
       s << "\\pagestyle{empty}\n"
       s << "\\usepackage{pstricks}\n"
@@ -104,8 +106,10 @@ class PSGen
    def _get_size(text, obj=nil)
       w = h = d = 0
       s = _latex_header(obj)
-      s += "\\newlength{\\twid}\n"
-      s += "\\newlength{\\tht}\n"
+      s << "\\nonstopmode\n"
+      # XXX insert font_family here?
+      s << "\\newlength{\\twid}\n"
+      s << "\\newlength{\\tht}\n"
       s << "\\newlength{\\tdp}\n"
       s << "\\newsavebox{\\ttxt}\n"
       s << "\\savebox{\\ttxt}{#{text}}\n"
@@ -127,6 +131,9 @@ class PSGen
       end
       return w, h+d
    end
+
+#######################################################################
+#######################################################################
 
    # Add commands to @latex_str to set line styles for obj
    def _set_line(obj, defobj)
