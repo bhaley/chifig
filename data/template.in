@@ -10,6 +10,10 @@
 # font_size n
 #
 # plot {
+#    inset true
+#    origin 'x,y'
+#    width n
+#    height n
 #    key hide | x,y
 #    bgcolor colorname
 #    title 'text $math$', colorname
