@@ -95,7 +95,7 @@ sleep(sleep_time)
 gs_cmd = "#{gs}"
 gs_cmd << " -dDEVICEWIDTHPOINTS=#{gs_width}"
 gs_cmd << " -dDEVICEHEIGHTPOINTS=#{gs_height}"
-gs_cmd << " -dNOPROMPT -q"
+gs_cmd << " -dNOPROMPT -q -dNOSAFER"
 gsin, gsout, gsth = CHIFIG.exec_drive(gs_cmd)
 
 # Save the original showpage, redefine it as an empty command, and save the 
