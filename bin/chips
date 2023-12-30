@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+# =============================================================================
+# chips -- Display a Postscript figure created by chifig using Ghostscript
+# 
+# Copyright (c) 2019-2020 Benjamin P. Haley
+#
+# See the LICENSE file for information on usage and redistribution of this
+# file and for a DISCLAIMER OF ALL WARRANTIES.
+# =============================================================================
+
+require 'chifig/exec'
+require 'chifig/config'
+
+gs = CHIFIG::CONFIG['gs_path']
+gs_width  = 245
+gs_height = 245
+res = 1.0
+sleep_time = 0.5
+
+# Command line
+nargs = ARGV.length
+if nargs < 1 or nargs > 4
+   $stderr.write("Usage: #{$0} psfile [res]\n")
+   exit 1
+end
+psfile = ARGV[0]
+res = ARGV[1].to_f if nargs > 1
+gs_width = (gs_width*res).to_i
+gs_height = (gs_height*res).to_i
+
+# Launch Ghostscript
+gs_cmd = "#{gs}"
+gs_cmd << " -dDEVICEWIDTHPOINTS=#{gs_width}"
+gs_cmd << " -dDEVICEHEIGHTPOINTS=#{gs_height}"
+gs_cmd << " -dNOPROMPT -q -dNOSAFER"
+gsin, gsout, gsth = CHIFIG.exec_drive(gs_cmd)
+
+# Save the original showpage, redefine it as an empty command, and save the 
+# original device name
+gsin.write("/sp {showpage} bind def\n")
+gsin.write("/showpage {} def\n")      
+# Deprecated in 9.? versions of gs
+#gsin.write("/devname currentdevice .devicename def\n")
+gsin.write("/devname currentpagedevice /Name get def\n")
+
+#
+# Display psfile with translated origin
+#
+# Restore original showpage, get bbox from gs
+gsin.write("/showpage {sp} def\n")
+gsin.write("(bbox) selectdevice\n")
+gsin.write("(#{psfile}) run\n")
+outstr = ''
+while true
+    begin
+        outstr << gsout.readpartial(1024)
+    rescue SystemCallError
+        # ignore 
+    end
+    break if outstr.include?('%%BoundingBox')
+end
+# Restore empty showpage, original device
+gsin.write("/showpage {} def\n")
+gsin.write("devname selectdevice\n")
+gsin.write("erasepage\n")
+# Translate origin
+m = /%%BoundingBox:\s*([\d]+)\s*([\d]+)\s*([\d]+)\s*([\d]+)/.match(outstr)
+gsin.write("-#{m[1]} -#{m[2]} translate\n") if m
+# Display
+gsin.write("(#{psfile}) run\n")
+
+# Wait for Interrupt, close gs
+done = false
+Signal.trap('INT') do
+    gsin.write('quit')
+    [gsin, gsout].each {|p| p.close}
+    done = true
+end
+begin
+    sleep(sleep_time)
+end until done
